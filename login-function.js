@@ -86,3 +86,47 @@ function displayIssues(issues) {
         container.appendChild(card);
     });
 }
+
+
+
+async function openModalWithSingleIssue(id) {
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`);
+    const result = await res.json();
+    const issue = result.data;
+
+    const modal = document.getElementById('issueModal');
+    const modalContent = document.getElementById('modalDetails');
+    const statusBg = issue.status === 'open' ? 'bg-[#22c55e]' : 'bg-[#a855f7]';
+    
+ 
+    const dateDisplay = issue.updatedAt ? `on ${issue.updatedAt}` : "";
+
+    modalContent.innerHTML = `
+        <div class="p-8 pb-4 text-left">
+            <h2 class="text-2xl font-bold mb-2 text-gray-800">${issue.title}</h2>
+            <div class="flex items-center gap-2 mb-4 text-sm text-gray-400">
+                <span class="${statusBg} text-white px-3 py-0.5 rounded-full text-[10px] font-bold capitalize">${issue.status}</span>
+                <span>• Opened by <b>${issue.author}</b> ${dateDisplay}</span>
+            </div>
+            <div class="flex gap-2 mb-6">
+                ${(issue.labels || []).map(label => `<button class="border border-red-100 text-red-500 bg-red-50 px-3 py-1 rounded text-[10px] font-bold uppercase">${label}</button>`).join('')}
+            </div>
+            <p class="text-gray-500 text-sm mb-10 leading-relaxed text-left">${issue.description || 'No description available.'}</p>
+        </div>
+
+        <div class="bg-gray-50 p-8 flex justify-between items-center border-t border-gray-100">
+            <div class="flex gap-16">
+                <div>
+                    <p class="text-xs text-gray-400 mb-1 font-medium">Assignee:</p>
+                    <p class="font-bold text-gray-700">${issue.author}</p>
+                </div>
+                <div>
+                    <p class="text-xs text-gray-400 mb-1 font-medium">Priority:</p>
+                    <span class="bg-red-500 text-white px-4 py-1 rounded-md text-[10px] font-bold uppercase">${issue.priority || 'MEDIUM'}</span>
+                </div>
+            </div>
+            <button onclick="closeModal()" class="btn btn-primary bg-[#6366f1] border-none px-10 rounded-lg text-white font-bold uppercase">Close</button>
+        </div>
+    `;
+    modal.classList.add('modal-open');
+}
