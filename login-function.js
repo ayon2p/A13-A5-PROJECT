@@ -130,3 +130,48 @@ async function openModalWithSingleIssue(id) {
     `;
     modal.classList.add('modal-open');
 }
+
+async function handleSearch(event) {
+    const query = event.target.value.trim();
+    if (!query) {
+        displayIssues(allIssues);
+        return;
+    }
+    const res = await fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${query}`);
+    const result = await res.json();
+    displayIssues(result.data || []);
+}
+
+
+function filterIssues(status, element) {
+    const container = document.getElementById("issuesContainer");
+    const spinner = document.getElementById("loadingSpinner");
+
+   
+    const buttons = document.querySelectorAll('.filter-btn');
+    buttons.forEach(btn => {
+        btn.classList.remove('bg-[#6366f1]', 'text-white');
+        btn.classList.add('bg-white', 'text-gray-500');
+    });
+    element.classList.remove('bg-white', 'text-gray-500');
+    element.classList.add('bg-[#6366f1]', 'text-white');
+
+   
+    container.innerHTML = "";
+    spinner.classList.remove('hidden');
+
+    
+    setTimeout(() => {
+        const filtered = status === 'all' ? allIssues : allIssues.filter(i => i.status.toLowerCase() === status);
+        
+        spinner.classList.add('hidden'); 
+        displayIssues(filtered);
+    }, 300); 
+}
+
+
+function closeModal() {
+    document.getElementById('issueModal').classList.remove('modal-open');
+}
+
+loadInitialData();
