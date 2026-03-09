@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+<!-- tailwand and daisy ui connected -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+<!-- css connected -->
+<link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+  <section class="bg-white rounded-xl shadow-2xl min-h-[742px] mt-8 max-w-[520px] mx-auto">
+    
+  <div class="w-11/12 mx-auto">
+             <div class="text-center">
+             <img class="max-[100px] mx-auto mb-3" src="assets/github-logo.png" alt="">
+             <h1 class="font-semibold text-2xl">GitHub Issues Tracker</h1>
+             <p class="text-xl text-[#64748b]">Sign in to manage your issues</p>
+             </div>
+   
+
+
+          <div class="card-body">
+          <label class="font-medium">Username</label>
+          <input id="input-username" type="email" class="input w-full" placeholder="Enter Username" />
+          <div><a class="text-blue-600">Default: admin</a></div>
+          <label class="font-medium">Password</label>
+          <input id="input-password" type="password" class="input w-full" placeholder="Password" />
+          <div><a class="text-blue-600">Default: admin123</a></div>
+          <button id="login-btn" class="btn btn-primary mt-4">Login</button>
+           </div>
+       
+          <div class="flex items-center px-8">
+          <div class="flex-grow border-t border-gray-300"></div>
+          <span class="mx-2 font-medium">OR</span>
+          <div class="flex-grow border-t border-gray-300"></div>
+          </div>
+    
+
+          <div class="text-center mt-4 w-11/12 mx-auto ">
+           <p class="text-[#64748b]">Demo Credentials:</p>
+            <div class=" bg-[#F8FAFC] p-4 rounded-xl">
+   
+           <p><span class="font-bold">Username:</span> admin</p>
+           <p><span class="font-bold">Password:</span> admin123</p>
+          </div>
+        
+  </div>
+  </section>
+
+</body>
+</html>
