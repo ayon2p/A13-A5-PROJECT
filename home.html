@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Issues Tracker</title>
+
+
+  <!-- tailwand and daisy ui connected -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<!-- font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+
+<!-- css connected -->
+<link rel="stylesheet" href="style.css">
+
+
+</head>
+<body class="bg-[#f9fafb]">
+
+    <div class="navbar bg-base-100 justify-between shadow-sm px-4 md:px-10">
+        <div class="flex items-center gap-2">
+            <img class="w-9 h-9" src="assets/github-logo.png" alt="logo">
+            <a class="font-bold text-xl hidden md:block">GitHub Issues Tracker</a>
+        </div>
+        <div class="flex gap-4">
+            <div class="relative">
+                <input type="text" oninput="handleSearch(event)" placeholder="Search issues..." class="input input-bordered w-full max-w-xs pl-10" />
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-4 text-gray-400"></i>
+            </div>
+            <button class="btn btn-primary bg-[#6366f1] border-none text-white font-bold">
+                <i class="fa-solid fa-plus mr-2"></i> NEW ISSUE
+            </button>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto p-6 md:p-10">
+        <div class="bg-white p-4 rounded-xl shadow-sm mb-10 border border-gray-100">
+            <div class="flex gap-3">
+                <button id="all-btn" onclick="filterIssues('all', this)" class="filter-btn px-8 py-2 rounded-md font-bold bg-[#6366f1] text-white">All</button>
+                <button onclick="filterIssues('open', this)" class="filter-btn px-8 py-2 rounded-md font-bold bg-white text-gray-500 border border-[#22c55e]">Open</button>
+                <button onclick="filterIssues('closed', this)" class="filter-btn px-8 py-2 rounded-md font-bold bg-white text-gray-500 border border-[#a855f7]">Closed</button>
+            </div>
+        </div>
+       
+        <div class="border bg-base-100 mb-5 rounded-2xl p-3">
+            <div class="flex items-center gap-4 mb-8">
+            <img src="assets/Aperture.png" alt="Aperture" class="w-10 h-10">
+            <div>
+                <h1 class="text-2xl font-bold text-gray-800"><span id="issueCount">0 Issues</span></h1>
+                <p class="text-gray-400 text-sm italic">Track and manage your project issues</p>
+            </div>
+        </div>
+        </div>
+        
+        <div id="loadingSpinner" class="hidden flex flex-col justify-center items-center my-20">
+            <span class="loading loading-spinner loading-lg text-[#6366f1]"></span>
+            <p class="text-gray-500 mt-4 font-medium italic">Loading issues...</p>
+        </div>
+
+        <div id="issuesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            </div>
+    </div>
+
+    <div id="issueModal" class="modal">
+        <div class="modal-box max-w-2xl p-0 overflow-hidden bg-white rounded-2xl">
+            <div id="modalDetails"></div>
+        </div>
+        <div class="modal-backdrop" onclick="closeModal()">
+            <button>close</button>
+        </div>
+    </div>
+
+    <script src="login-function.js"></script>
+</body>
+</html>
