@@ -1,0 +1,28 @@
+
+1️⃣ What is the difference between var, let, and const?
+
+var: i can redeclare the same variable name in the same scope without error. 
+let: i can change the value later, but i cannot redeclare the variable name in the same scope.
+const: the value cannot be changed. 
+
+
+
+
+2️⃣ What is the spread operator (...)?
+
+The spread operator (...) is a shortand tool that spreads the elements of an array or object into a new one;
+
+
+3️⃣ What is the difference between map(), filter(), and forEach()?
+
+==>when i want to create a new array by applying a function to every element in the original array. It always returns a new array of the same length.
+==>when i want to create a new array containing only the elements that pass a specific condition (true/false).
+==>when i want to execute a piece of code for every item, but i don't need to return a new array. 
+
+
+4️⃣ What is an arrow function?
+An arrow function is a shorter, more modern way to write functions in JavaScript;
+
+
+5️⃣ What are template literals?
+Template literals are a modern way to work with strings in JavaScript.example : use(``);
